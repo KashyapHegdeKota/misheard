@@ -49,3 +49,5 @@ next-env.d.ts
 
 # screenshots written by the end-to-end checks
 /e2e/out/
+
+.vercel

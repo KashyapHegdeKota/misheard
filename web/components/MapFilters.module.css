@@ -1,0 +1,140 @@
+.bar {
+  display: grid;
+  gap: 18px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+
+.toggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.875rem;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+.count b {
+  font-weight: 600;
+}
+
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 18px 36px;
+}
+.groups[hidden] {
+  display: none;
+}
+
+.group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.group legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.chip:hover {
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.chip[aria-pressed="true"],
+.chip[aria-checked="true"] {
+  background: #f4f4f5;
+  border-color: #f4f4f5;
+  color: #0a0a0b;
+}
+
+.n {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  opacity: 0.78;
+}
+
+.select {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8125rem;
+}
+
+.reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-end;
+  min-height: 36px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.25em;
+}
+.reset:hover:not(:disabled) {
+  color: var(--text);
+}
+.reset:disabled {
+  opacity: 0.35;
+  cursor: default;
+  text-decoration: none;
+}
+
+@media (max-width: 899px) {
+  .toggle {
+    display: inline-flex;
+  }
+  .groups {
+    gap: 16px 24px;
+  }
+}

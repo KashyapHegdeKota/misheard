@@ -1,0 +1,101 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: max(640px, calc(100svh - var(--banner-h)));
+  overflow: hidden;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 85% 75% at 16% 52%, rgba(10, 10, 11, 0.9) 0%, rgba(10, 10, 11, 0.72) 42%, rgba(10, 10, 11, 0) 78%),
+    linear-gradient(to bottom, rgba(10, 10, 11, 0.55) 0%, rgba(10, 10, 11, 0) 22%, rgba(10, 10, 11, 0) 78%, var(--bg) 100%);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(96px, 14vh, 152px) clamp(72px, 10vh, 112px);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise,
+.title,
+.sub,
+.actions,
+.foot {
+  animation: rise 1.3s var(--ease) both;
+}
+
+.title {
+  margin-top: 22px;
+  max-width: 11.5ch;
+  font-size: clamp(2.7rem, 1rem + 7.4vw, 6.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  text-wrap: balance;
+  animation-delay: 0.1s;
+}
+
+.sub {
+  margin-top: 30px;
+  max-width: 34ch;
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  line-height: 1.38;
+  letter-spacing: -0.015em;
+  color: var(--text-2);
+  animation-delay: 0.28s;
+}
+
+.sub strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.actions {
+  margin-top: 40px;
+  animation-delay: 0.42s;
+}
+
+.foot {
+  margin-top: clamp(40px, 8vh, 72px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 20px 36px;
+  animation-delay: 0.6s;
+}
+
+.count {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+
+@media (max-width: 640px) {
+  .shade {
+    background:
+      linear-gradient(to bottom, rgba(10, 10, 11, 0.78) 0%, rgba(10, 10, 11, 0.62) 55%, rgba(10, 10, 11, 0.5) 80%, var(--bg) 100%);
+  }
+}
+
+@media (max-width: 520px) {
+  .actions > :global(.btn) {
+    flex: 1 1 100%;
+  }
+}

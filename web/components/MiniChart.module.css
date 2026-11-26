@@ -1,0 +1,99 @@
+.figure {
+  margin: 0;
+}
+
+.chart {
+  display: block;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.axis {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.tick,
+.axisLabel,
+.n {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--text-3);
+}
+.axisLabel {
+  letter-spacing: 0.08em;
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.cat {
+  font-size: 11px;
+  fill: var(--text-2);
+}
+
+.bar {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.chart[data-armed="true"] .bar {
+  transform: scaleY(0);
+}
+.chart[data-armed="true"][data-inview="true"] .bar {
+  transform: scaleY(1);
+  transition: transform 1.3s var(--ease);
+}
+
+.other {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+
+.key {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 18px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgb(73 222 120), rgb(255 185 35), rgb(247 56 66));
+}
+
+.tickSwatch {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  margin-left: 8px;
+  border-radius: 1px;
+  background: #fff;
+}

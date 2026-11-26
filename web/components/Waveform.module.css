@@ -1,0 +1,66 @@
+.root {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: #f4f4f5;
+  color: #0a0a0b;
+  transition:
+    transform 0.4s var(--ease),
+    background 0.4s var(--ease),
+    opacity 0.4s var(--ease);
+}
+.play:hover:not(:disabled) {
+  background: #fff;
+  transform: scale(1.05);
+}
+.play:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.play svg {
+  margin-left: 1px;
+}
+
+.wave {
+  position: relative;
+  min-width: 0;
+  height: 56px;
+  border-radius: 8px;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+}
+
+.root[data-status="ready"] .canvas {
+  opacity: 1;
+}
+
+.msg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+
+.clock {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}

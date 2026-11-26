@@ -1,0 +1,300 @@
+.root {
+  display: grid;
+  gap: 28px;
+}
+
+.stage {
+  font-size: clamp(1.3rem, 0.85rem + 1.9vw, 2.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  min-height: 7em;
+}
+
+.words {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75em 0.62em;
+  min-width: 0;
+}
+
+.lead {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.45em;
+}
+
+.speaker {
+  flex: none;
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-bottom: 0.32em;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-2);
+}
+
+/* one word: the correction above, the model's output below */
+.tok {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0 0.12em 0.14em;
+  border-radius: 0.22em;
+  opacity: 0.42;
+  transition:
+    opacity 0.8s var(--ease),
+    background-color 0.6s var(--ease),
+    box-shadow 0.6s var(--ease);
+}
+
+/* the errors are visible before anyone presses play; the rest lights up as it is spoken */
+.tok[data-op="sub"],
+.tok[data-op="del"],
+.tok[data-op="ins"] {
+  opacity: 0.84;
+}
+
+.tok[data-state="active"],
+.tok[data-state="done"] {
+  opacity: 1;
+}
+
+.tok[data-state="active"] {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 0.14em rgba(255, 255, 255, 0.09);
+}
+
+.fix {
+  display: block;
+  min-height: 1em;
+  font-size: 0.5em;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  color: var(--right);
+  white-space: nowrap;
+}
+
+.word {
+  display: block;
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sub .word,
+.ins .word {
+  color: var(--wrong-text);
+  text-decoration: line-through;
+  text-decoration-color: var(--wrong);
+  text-decoration-thickness: 0.085em;
+}
+
+.ins .fix {
+  color: var(--wrong-text);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.4em;
+  padding-bottom: 0.1em;
+}
+
+.gap {
+  display: inline-block;
+  height: 1.02em;
+  min-width: 1.6em;
+  vertical-align: -0.12em;
+  border: 0.07em dashed var(--wrong);
+  border-radius: 0.2em;
+  background: rgba(247, 56, 66, 0.08);
+}
+
+/* controls */
+.controls {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.play {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 0;
+  background: #f4f4f5;
+  color: #0a0a0b;
+  transition:
+    transform 0.4s var(--ease),
+    background 0.4s var(--ease);
+}
+.play:hover {
+  background: #fff;
+  transform: scale(1.04);
+}
+.play:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.play svg {
+  margin-left: 2px;
+}
+.play[aria-label^="Pause"] svg {
+  margin-left: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+.play[data-fresh="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  animation: pulse 2.8s var(--ease) infinite;
+  pointer-events: none;
+}
+
+.scrub {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.track {
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.track input[type="range"] {
+  --p: 0%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.track input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #f4f4f5 var(--p), rgba(255, 255, 255, 0.18) var(--p));
+}
+.track input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #f4f4f5 var(--p), rgba(255, 255, 255, 0.18) var(--p));
+}
+.track input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(10, 10, 11, 0.9);
+}
+.track input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(10, 10, 11, 0.9);
+}
+
+/* where the model went wrong, along the timeline */
+.ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ticks i {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 1px;
+  background: var(--wrong);
+  opacity: 0.8;
+}
+
+.clock {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.hint {
+  grid-column: 2;
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+
+/* key */
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+.key li {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 34ch;
+}
+.mini {
+  font-size: 1.15rem;
+  opacity: 1;
+  flex: none;
+}
+
+@media (max-width: 560px) {
+  .play {
+    width: 60px;
+    height: 60px;
+  }
+  .controls {
+    gap: 6px 14px;
+  }
+  .scrub {
+    gap: 10px;
+  }
+}

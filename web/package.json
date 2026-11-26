@@ -1,0 +1,41 @@
+{
+  "name": "misheard-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "data": "node scripts/prepare-data.mjs",
+    "sample": "node scripts/make-sample-data.mjs",
+    "dev": "node scripts/prepare-data.mjs && next dev",
+    "build": "node scripts/prepare-data.mjs && next build",
+    "preview": "node scripts/serve-static.mjs out",
+    "typecheck": "node scripts/prepare-data.mjs && tsc --noEmit",
+    "lint": "eslint",
+    "e2e": "node e2e/run.mjs"
+  },
+  "dependencies": {
+    "@deck.gl/core": "9.4.2",
+    "@deck.gl/layers": "9.4.2",
+    "@deck.gl/react": "9.4.2",
+    "@loaders.gl/core": "^4.5.5",
+    "@luma.gl/core": "~9.4.0",
+    "@luma.gl/engine": "~9.4.0",
+    "@luma.gl/webgl": "~9.4.0",
+    "framer-motion": "14.14.0",
+    "geist": "^1.9.2",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "wavesurfer.js": "8.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

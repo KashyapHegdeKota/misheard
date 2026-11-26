@@ -1,0 +1,101 @@
+.draft {
+  margin-left: 14px;
+  padding: 3px 8px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+}
+
+.list {
+  margin-top: clamp(40px, 6vw, 72px);
+  border-top: 1px solid var(--line);
+}
+
+.list > li {
+  border-bottom: 1px solid var(--line);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 24px clamp(24px, 4vw, 56px);
+  padding-block: clamp(32px, 4.5vw, 52px);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-3);
+  padding-top: 0.5em;
+}
+
+.kind {
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.why {
+  margin-top: 16px;
+  max-width: 62ch;
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+
+.collect {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  max-width: 62ch;
+}
+.collect li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+.collect li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 8px;
+  height: 1.5px;
+  background: var(--text-3);
+}
+
+.evidence {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+.evidence :global(.btn) {
+  justify-self: start;
+  margin-top: 6px;
+  min-height: 42px;
+  font-size: 0.875rem;
+}
+
+.stat {
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+@media (max-width: 980px) {
+  .item {
+    grid-template-columns: 1fr;
+  }
+  .index {
+    padding-top: 0;
+  }
+}
